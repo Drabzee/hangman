@@ -1,0 +1,42 @@
+.Keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 80%;
+    justify-content: center;
+    margin: 70px auto 0;
+
+    @media (max-width: 520px) {
+        gap: 7px;
+        width: 100%;
+    }
+
+    .char {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 400;
+        font-size: 48px;
+        color: #FFAA4C;
+        font-family: sans-serif;
+        width: 70px;
+        height: 70px;
+        border: 1px solid #FFAA4C;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        @media (max-width: 520px) {
+            font-size: 32px;
+            width: 46px;
+            height: 46px;
+        }
+
+        &.disabled {
+            opacity: .15;
+            cursor: initial;
+        }
+    }
+}

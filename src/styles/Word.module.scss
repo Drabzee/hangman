@@ -1,0 +1,17 @@
+.Word {
+    text-align: center;
+    width: 100%;
+    max-width: 820px;
+    margin: 0 auto;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #D6D5A8;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+
+    div {
+        line-height: 1.5;
+    }
+}
