@@ -1,15 +1,15 @@
-import { GameActionType, GameContext } from '@/contexts/GameContext';
+import { GameActionType, GameContext, GameStatus } from '@/contexts/GameContext';
 import style from '@/styles/Keyboard.module.scss';
 import { MouseEventHandler, useContext, useEffect } from 'react';
 
 const Keyboard = (): JSX.Element => {
 
-    const { state: { keysPressed }, dispatch } = useContext(GameContext);
+    const { state: { keysPressed, status }, dispatch } = useContext(GameContext);
 
     const alphabets:string = 'abcdefghijklmnopqrstuvwxyz';
 
     const handleKeyPressed = (key:string) => {
-        if(keysPressed.includes(key)) return;
+        if(status !== GameStatus.RUNNING || keysPressed.includes(key)) return;
         dispatch({type: GameActionType.KEYPRESSED, payload: key});
     }
 

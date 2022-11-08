@@ -26,18 +26,28 @@ const initialGameState:GameState = {
 const gameReducer: GameReducer = (state, action) => {
     switch(action.type) {
         case GameActionType.KEYPRESSED:
-            if(state.status !== GameStatus.RUNNING) return state;
-
             const key = action.payload as string;
+            const keysPressed = state.keysPressed.concat(key);
             let wrongInputCount = state.wrongInputCount;
+            let status = state.status;
+
             if (!state.countryName.includes(key)) {
                 wrongInputCount++;
             }
+
+            if(wrongInputCount >= 6) {
+                console.log('LOST');
+                status = GameStatus.LOST;
+            } else if(state.countryName.split('').filter(char => !(char === ' ' || keysPressed.includes(char))).length === 0) {
+                console.log('WON');
+                status = GameStatus.WON;
+            }
+
             return {
                 ...state,
                 wrongInputCount,
-                keysPressed: state.keysPressed.concat(key),
-                status: wrongInputCount >= 6 ? GameStatus.LOST : state.status
+                keysPressed,
+                status: status
             };
         case GameActionType.INITIALISE:
             const randomNumber = Math.floor(Math.random() * Countries.length + 1) - 1;
