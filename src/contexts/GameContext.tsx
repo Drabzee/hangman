@@ -36,10 +36,8 @@ const gameReducer: GameReducer = (state, action) => {
             }
 
             if(wrongInputCount >= 6) {
-                console.log('LOST');
                 status = GameStatus.LOST;
             } else if(state.countryName.split('').filter(char => !(char === ' ' || keysPressed.includes(char))).length === 0) {
-                console.log('WON');
                 status = GameStatus.WON;
             }
 

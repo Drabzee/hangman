@@ -26,6 +26,28 @@ body {
         justify-content: center;
     }
 
+    section:first-of-type {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 40px;
+
+        .reload {
+            background-color: transparent;
+            border: 2px solid #FFAA4C;
+            border-radius: 6px;
+            color: #FFAA4C;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: inset 0 0 10px -3px #ffaa4c;
+            text-shadow: 0 0 10px -3px #ffaa4c;
+            opacity: .9;
+
+            &:hover { opacity: 1; }
+        }
+    }
+
     section:last-of-type {
         flex: 1;
         
