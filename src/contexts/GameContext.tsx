@@ -1,7 +1,7 @@
 import { createContext, Dispatch, useReducer } from 'react';
 import Countries from '@/utils/countryData';
 
-enum GameStatus { RUNNING, WON, LOST, PAUSED }
+export enum GameStatus { RUNNING, WON, LOST, PAUSED }
 export enum GameActionType { KEYPRESSED, INITIALISE, GAME_WON, GAME_LOST }
 interface GameState {
     countryName: string,
@@ -26,6 +26,8 @@ const initialGameState:GameState = {
 const gameReducer: GameReducer = (state, action) => {
     switch(action.type) {
         case GameActionType.KEYPRESSED:
+            if(state.status !== GameStatus.RUNNING) return state;
+
             const key = action.payload as string;
             let wrongInputCount = state.wrongInputCount;
             if (!state.countryName.includes(key)) {
@@ -34,7 +36,8 @@ const gameReducer: GameReducer = (state, action) => {
             return {
                 ...state,
                 wrongInputCount,
-                keysPressed: state.keysPressed.concat(key)
+                keysPressed: state.keysPressed.concat(key),
+                status: wrongInputCount >= 6 ? GameStatus.LOST : state.status
             };
         case GameActionType.INITIALISE:
             const randomNumber = Math.floor(Math.random() * Countries.length + 1) - 1;
