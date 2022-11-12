@@ -3,7 +3,7 @@ import style from '@/styles/Keyboard.module.scss';
 import { MouseEventHandler, useContext, useEffect } from 'react';
 
 const Keyboard = (): JSX.Element => {
-
+    
     const { state: { keysPressed, status }, dispatch } = useContext(GameContext);
 
     const alphabets:string = 'abcdefghijklmnopqrstuvwxyz';
@@ -32,7 +32,7 @@ const Keyboard = (): JSX.Element => {
         document.addEventListener('keyup', keyPressHandler);
 
         return () => document.removeEventListener('keyup', keyPressHandler);
-    }, [keysPressed]);
+    }, [keysPressed, status]);
 
     return (
         <div onClick={handleKeyboardClickEvent} className={style.Keyboard}>
